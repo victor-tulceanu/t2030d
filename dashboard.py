@@ -5,15 +5,13 @@ from dash import Dash, dcc, html, dash_table
 from dash.dependencies import Input, Output
 from amortization.amount import calculate_amortization_amount
 import plotly.io as pio
-#-----------------------------------------------------------------------
-#PREAMBLES
-#-----------------------------------------------------------------------
-app = Dash(__name__)
-server = app.server
 
-pio.renderers.default = "browser" #fixes graphics loading issue
-app.css.config.serve_locally = True #loads .css file in assets folder
-app.scripts.config.serve_locally = True
+app = Dash(__name__)
+server = app.server   # <-- Gunicorn will use this
+
+# pio.renderers.default = "browser"           # REMOVE for deployment
+# app.css.config.serve_locally = True         # Deprecated in Dash 2
+# app.scripts.config.serve_locally = True     # Deprecated
 #-----------------------------------------------------------------------
 #LOAD DATA
 #-----------------------------------------------------------------------
