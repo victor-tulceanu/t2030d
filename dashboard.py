@@ -1,15 +1,14 @@
 import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import dash
-from dash import dcc
-from dash import html
+from dash import Dash, dcc, html, dash_table
+from dash.dependencies import Input, Output
 from amortization.amount import calculate_amortization_amount
 import plotly.io as pio
 #-----------------------------------------------------------------------
 #PREAMBLES
 #-----------------------------------------------------------------------
-app = dash.Dash(__name__)
+app = Dash(__name__)
 server = app.server
 
 pio.renderers.default = "browser" #fixes graphics loading issue
@@ -237,11 +236,11 @@ app.layout = html.Div([
 #CALLBACK
 #-----------------------------------------------------------------------
 @app.callback(
-      dash.dependencies.Output('graph_output', 'figure'),
-      [dash.dependencies.Input('ct-slider', 'value'),
-       dash.dependencies.Input('payback-slider', 'value'),
-       dash.dependencies.Input('elec-slider', 'value'),
-       dash.dependencies.Input('interest-slider', 'value'),
+      Output('graph_output', 'figure'),
+      [Input('ct-slider', 'value'),
+       Input('payback-slider', 'value'),
+       Input('elec-slider', 'value'),
+       Input('interest-slider', 'value'),
       ]
 )
 #-----------------------------------------------------------------------
