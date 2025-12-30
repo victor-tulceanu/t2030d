@@ -2,8 +2,8 @@ import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from amortization.amount import calculate_amortization_amount
 import plotly.io as pio
 #-----------------------------------------------------------------------
@@ -342,5 +342,5 @@ def update_graph(ct_value, payback_value, elec_value, interest_value):
       return fig
 
 if __name__ == '__main__':
-      app.run_server(debug=False)
+      app.run(debug=False)
 
